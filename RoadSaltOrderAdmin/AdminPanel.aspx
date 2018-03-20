@@ -8,18 +8,19 @@
     <link runat="server" rel="shortcut icon" href="Images/faviconLogo.ico" type="image/x-icon" />
     <link runat="server" rel="icon" href="Images/faviconLogo.ico" type="image/ico" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <script src="Scripts/jquery-1.10.2.min.js"></script>
+
     <%--<script src="Scripts/bootstrap.min.js"></script>--%>
     <script src="Scripts/angular.min.js"></script>
     <script src="Scripts/Script.js"></script>
-    <script src="Scripts/dirPagination.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <%--<script src="Scripts/dirPagination.js"></script>--%>
     <script type="text/javascript">
         history.pushState(null, null, document.URL);
         window.addEventListener('popstate', function () {
             history.pushState(null, null, document.URL);
         });
     </script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <style>
         .mmdheader, td {
             margin-left: 0px;
@@ -117,9 +118,10 @@
         .center {
             margin: 0 auto;
         }
-        li a{
-            font-size:12px !important;
-            font-family:sans-serif !important;
+
+        li a {
+            font-size: 12px !important;
+            font-family: sans-serif !important;
         }
     </style>
     <style>
@@ -405,29 +407,50 @@
                                 <div class="col-md-3"></div>
                             </div>
                             <div class="col-md-6">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-8" style="text-align:center">
-                                    <input type="text" placeholder="Search E-Mail ID's" data-ng-model="searchText" />
-                                    <table id="tblEmail" class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Email ID's</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr data-dir-paginate="email in emails|itemsPerPage:10|filter:search" data-ng-click="loadtextbox(email.emailID,email.contactID)" class="{{selected}}" style="cursor: pointer">
-                                                <td class="customfont">{{email.emailID}}</td>
-                                                <td style="display: none">{{email.contactID}} </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" class="customfont"></dir-pagination-controls>
-                                    <input type="button" id="btnDelete" value="Delete" class="btn btn-primary center" style="display: none" data-ng-click="Delete()" />
+                                <div class="col-md-1"></div>
+                                <div class="col-md-9" style="text-align: center">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label>Show:</label></div>
+                                        <div class="col-md-3">
+                                            <select data-ng-model="pageSize" id="pageSize" class="form-control">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                                <option value="20">20</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Search:</label></div>
+                                        <div class="col-md-5">
+                                            <input type="text" placeholder="Search E-Mail" data-ng-model="q" id="search" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <table id="tblEmail" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Email ID's</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-ng-repeat="email in emails| filter:q | startFrom:currentPage*pageSize | limitTo:pageSize" data-ng-click="loadtextbox(email.emailID,email.contactID)" class="{{selected}}" style="cursor: pointer">
+                                                    <td class="customfont">{{email.emailID}}</td>
+                                                    <td style="display: none">{{email.contactID}} </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <input type="button" value="< Prev" class="btn btn-default" data-ng-disabled="currentPage == 0" data-ng-click="currentPage=currentPage-1" />
+                                        {{currentPage+1}} / {{numberOfPages()}}
+                                    <input type="button" value="Next >" class="btn btn-default" data-ng-disabled="currentPage >= getData().length/pageSize - 1" data-ng-click="currentPage=currentPage+1" />
+                                        <br />
+                                        <br />
+                                        <input type="button" id="btnDelete" value="Delete" class="btn btn-danger center" style="display: none" data-ng-click="Delete()" />
+                                    </div>
                                 </div>
-                                <div class="col-md-2"></div>
-
+                                <div class="col-md-1"></div>
                             </div>
-
                         </div>
                     </div>
                 </div>
