@@ -51,6 +51,18 @@ var saltOrderEmail = angular
 
                                 $scope.loademails();
                               
+                                $scope.search = function (item) {
+                                    if ($scope.searchText == undefined) {
+                                        return true;
+                                    }
+                                    else
+                                    {
+                                        if (item.emailID.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1) {
+                                            return true;
+                                        }
+                                    }
+                                    return false;
+                                }
 
                                 $scope.loadtextbox = function (emailID, ContactID) {
                                     //  alert(ContactID + "," + emailID);

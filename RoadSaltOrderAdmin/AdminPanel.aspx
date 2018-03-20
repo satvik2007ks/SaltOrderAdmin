@@ -407,6 +407,7 @@
                             <div class="col-md-6">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8" style="text-align:center">
+                                    <input type="text" placeholder="Search E-Mail ID's" data-ng-model="searchText" />
                                     <table id="tblEmail" class="table table-bordered">
                                         <thead>
                                             <tr>
@@ -414,7 +415,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr data-dir-paginate="email in emails|itemsPerPage:10" data-ng-click="loadtextbox(email.emailID,email.contactID)" class="{{selected}}" style="cursor: pointer">
+                                            <tr data-dir-paginate="email in emails|itemsPerPage:10|filter:search" data-ng-click="loadtextbox(email.emailID,email.contactID)" class="{{selected}}" style="cursor: pointer">
                                                 <td class="customfont">{{email.emailID}}</td>
                                                 <td style="display: none">{{email.contactID}} </td>
                                             </tr>
