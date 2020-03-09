@@ -82,17 +82,16 @@ namespace RoadSaltOrderAdmin.WebService
                 while (rdr.Read())
                 {
                     report reportobj = new report();
-                    reportobj.emailID = rdr["emailID"].ToString();
                     reportobj.orderID = rdr["orderID"].ToString();
+                    reportobj.orderDateTime = rdr["orderDateTime"].ToString();
                     reportobj.agencyPOC= rdr["agencyPOC"].ToString();
                     reportobj.agencyEmail = rdr["agencyEmail"].ToString();
                     reportobj.agencyDirectPhone = rdr["agencyDirectPhone"].ToString();
-                    reportobj.agencyAltPhone = rdr["agencyAltPhone"].ToString();
+                    reportobj.agencyAltContact = rdr["agencyAltContact"].ToString();
+                    reportobj.agencyAltEmail = rdr["agencyAltEmail"].ToString();
+                    reportobj.agencyAltPhone = rdr["agencyAltDirectPhone"].ToString();
+                    reportobj.District = rdr["District"].ToString();
                     reportobj.agencyLocationType = rdr["agencyLocationType"].ToString();
-                    reportobj.contractName = rdr["contractName"].ToString();
-                    reportobj.contractEmail = rdr["contractEmail"].ToString();
-                    reportobj.contractDirectPhone = rdr["contractDirectPhone"].ToString();
-                    reportobj.orderDateTime = rdr["orderDateTime"].ToString();
                     reportobj.municipalAgencyName = rdr["municipalAgencyName"].ToString();
                     reportobj.streetAddress = rdr["streetAddress"].ToString();
                     reportobj.city = rdr["city"].ToString();
@@ -102,6 +101,10 @@ namespace RoadSaltOrderAdmin.WebService
                     reportobj.untreatedSaltQtyType = rdr["untreatedSaltQtyType"].ToString();
                     reportobj.treatedSaltQty = rdr["treatedSaltQty"].ToString();
                     reportobj.treatedSaltQtyType = rdr["treatedSaltQtyType"].ToString();
+                    reportobj.earlyFilluntreatedSaltQty = rdr["untreatedSaltyQtyEarlyFill"].ToString();
+                    reportobj.earlyFilluntreatedSaltQtyType = rdr["untreatedSaltEarlyFillQtyType"].ToString();
+                    reportobj.earlyFilltreatedSaltQty = rdr["treatedSaltQytEarlyFill"].ToString();
+                    reportobj.earlyFilltreatedSaltQtyType = rdr["treatedSaltEarlyFillQtyType"].ToString();
                     listreport.Add(reportobj);
                 }
             }
